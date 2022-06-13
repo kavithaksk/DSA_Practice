@@ -58,39 +58,6 @@ public class InterviewQuestions {
 
     // GEEKSFORGEEKS
 
-    public int LengthOfLongestNonRepeatingChar(String s) {
-
-        Set<Character> hashSet = new HashSet<>();
-        int nonRepeatingCharCount = 0;
-        int longestRepeatingCount = 0;
-        int startIndex = 0, endIndex = 0;
-
-        for (int i = 0; i < s.length(); i++) {
-            nonRepeatingCharCount = 0;
-            hashSet.clear();
-            for (int j = i; j < s.length(); j++) {
-                Character ch = s.charAt(j);
-                if (!hashSet.contains(ch)) {
-                    hashSet.add(ch);
-                    nonRepeatingCharCount++;
-                } else {
-                    startIndex = i;
-                    endIndex = j - 1;
-                    break;
-                }
-            }
-            if (longestRepeatingCount < nonRepeatingCharCount) {
-                longestRepeatingCount = nonRepeatingCharCount;
-
-            }
-        }
-        System.out.println("start Index --> " + startIndex + "emd index-->" + endIndex);
-        System.out.println(longestRepeatingCount);
-
-
-        System.out.println("Longest substring between start index & end index:" + s.substring(startIndex, endIndex));
-        return longestRepeatingCount;
-    }
 
     public static void reverse(int[] array) {
 
@@ -123,117 +90,11 @@ public class InterviewQuestions {
         return pos;
     }
 
-    public static int trap(int[] heights)
-    {
-        // maintain two pointers left and right, pointing to the leftmost and
-        // rightmost index of the input array
-        int left = 0, right = heights.length - 1, water = 0;
-
-        int maxLeft = heights[left];
-        int maxRight = heights[right];
-
-       // { 7, 0, 4, 2, 5, 0, 6, 4, 0, 5 }
-        while (left < right)
-        {
-            if (heights[left] <= heights[right])
-            {
-                left++;
-                maxLeft = Integer.max(maxLeft, heights[left]);
-                water += (maxLeft - heights[left]);
-            }
-            else {
-                right--;
-                maxRight = Integer.max(maxRight, heights[right]);
-                water += (maxRight - heights[right]);
-            }
-        }
-
-        return water;
-    }
-
-    /* container with most water */
-    public int maxArea(int[] A, int len) {
-        int l = 0;
-        int r = len - 1;
-        int area = 0;
-
-        while (l < r) {
-            int base = Math.min(A[l], A[r]) * (r - l);
-            System.out.println(base);
-            // Calculating the max area
-            area = Math.max(area, base);
-
-            if (A[l] < A[r])
-                l += 1;
-
-            else
-                r -= 1;
-        }
-        return area;
-    }
-
-    public int findFirstMissingPositive(int[] nums) {
-        int missingNum = 0;
-        int firstPostiveNumberIndexInArray = 0;
-
-        Arrays.sort(nums);
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] > 0) {
-                firstPostiveNumberIndexInArray = i;
-                break;
-            }
-        }
-        int count = 0;
-        if (nums[firstPostiveNumberIndexInArray] != 1)
-            missingNum = 1;
-        else {
-            for (int i = firstPostiveNumberIndexInArray; i < nums.length - 1; i++) {
-                int diff = Math.abs(nums[i + 1] - nums[i]);
-                if (diff > 1) {
-                    missingNum = nums[i] + 1;
-                    break;
-                }
-                count++;
-            }
-            if (count == nums.length - firstPostiveNumberIndexInArray - 1)
-                missingNum = nums[nums.length - 1] + 1;
-        }
-        return missingNum;
-    }
-
-    public List<List<Integer>> CombinationSumII(int[] candidates, int target) {
-        /* 10, 1, 2, 7, 6, 1, 5 ,  target = 8.
-        /* [1, 7], [2, 6], [1, 1, 6], [2, 1, 5] */
-        List<List<Integer>> result = new ArrayList<>();
-        List<Integer> interimResults = new ArrayList<>();
-
-        for (int i = 0; i < candidates.length; i++) {
-            int diff = target - candidates[i];
-            if (diff < 0) continue;
-            else {
-                int searchResult = Arrays.binarySearch(candidates, diff);
-                if (searchResult > 0) {
-                    if (!interimResults.contains(candidates[i]) && !interimResults.contains(candidates[searchResult])) {
-                        interimResults.add(candidates[i]);
-                        interimResults.add(candidates[searchResult]);
-
-                        //interimResults.clear();
-                    }
-                }
-            }
-            result.add(interimResults);
-        }
 
 
-        for (List<Integer> i : result) {
-            System.out.println(i);
-        }
 
-//        for(Map.Entry<Integer, Integer> hashMapValues : initalPairMap.entrySet())
-//            System.out.println("Key--> " +hashMapValues.getKey() + "Values -->" +hashMapValues.getValue());
 
-        return result;
-    }
+
 
     //"4235"
     public int myAtoi(String inpString) {
@@ -294,90 +155,7 @@ public class InterviewQuestions {
             System.out.println(A[i]);
     }
 
-    public void reArrangeWordsInSentence(String s)
-    {
-        String[] tokens = s.split(" ");
-        Map<String , Integer> hashMap = new LinkedHashMap<>();
 
-        for(int i = 0; i < tokens.length; i++)
-        {
-            int length = tokens[i].length();
-            hashMap.put(tokens[i], length);
-        }
-        List<Integer> list = new ArrayList<>();
-       for(Map.Entry<String, Integer> entry : hashMap.entrySet())
-       {
-           //System.out.println("Key-->" + entry.getKey() + " " + "Length of token" + " " + entry.getValue());
-           list.add(entry.getValue());
-       }
-       Collections.sort(list);
-       Stream.of(list.toArray()).forEach(System.out::println);
-
-       Map<String, Integer> sortedMap = new LinkedHashMap<String, Integer>();
-       for(Integer i : list)
-       {
-           String key = " ";
-           for(Map.Entry<String, Integer> entry : hashMap.entrySet())
-           {
-               if (entry.getValue() == i) {
-                   key = entry.getKey();
-                   sortedMap.put(key, i);
-               }
-           }
-       }
-
-       StringBuilder sb = new StringBuilder();
-       String[] keys = sortedMap.keySet().toArray(new String[0]);
-       Arrays.stream(keys).forEach(S -> sb.append(S.toLowerCase() + " "));
-
-       String result = sb.toString();
-
-       int firstCh = result.charAt(0) - 32;
-       System.out.println(sb.toString());
-       //result.replaceFirst(result.charAt(0) + " "), (char) firstCh + " ");
-
-
-
-//       int d = (char) keys[0].charAt(0) - 32;
-//       char ch = (char) d;
-//       String firstText = keys[0].replace(keys[0].charAt(0), ch);
-//       sb.append(firstText + " ");
-//       for(int i = 1; i < keys.length - 1; i++)
-//           sb.append(keys[i] + " ");
-//
-//
-//        String lastKey =  keys[keys.length - 1];
-//
-//        d = lastKey.charAt(0);
-//        if (d < 97)
-//            d = d + 32;
-//        ch = (char) d;
-//
-//        System.out.println(ch);
-//
-//        String lastText = lastKey.replace(lastKey.charAt(0), ch);
-//        System.out.println(lastText);
-//
-//        sb.append(lastText);
-
-
-
-        int i = 0;
-//        for(Map.Entry<String, Integer> entry : sortedMap.entrySet()) {
-//
-//            String firstKey = entry.getKey();
-//            if (i == 0) {
-//                int d = (char) firstKey.charAt(0) - 32;
-//                char c = (char) d;
-//                System.out.println(c);
-//                String newString = entry.getKey().replace(firstKey.charAt(0), c);
-//                sb.append(newString + " ");
-//            }
-//            else
-//                sb.append(entry.getKey() + " ");
-//            i++;
-//        }
-    }
 
     public List<Integer> findMaxiumProductofTwoIntegersInArray(Integer[] a)
     {
@@ -548,99 +326,11 @@ public class InterviewQuestions {
                 width = secondMaxElementIndex - firstMaxElementIndex;
                 System.out.println("Width --> " + width);
             }
-
             return width * secondMaxElement;
-
         }
-
-
-
         return 1;
-
-
-
-
-
-
     }
 
-
-    private static<K, V> void insert(Map<K, List<V>> hashMap, K key, V value)
-    {
-        // if the key is seen for the first time, initialize the list
-        hashMap.putIfAbsent(key, new ArrayList<>());
-        hashMap.get(key).add(value);
-    }
-
-    // Function to print all subarrays with a zero-sum in a given array
-    public void printAllSubarrays(int[] nums)
-    {
-        // create an empty multimap to store the ending index of all
-        // subarrays having the same sum
-        Map<Integer, List<Integer>> hashMap = new HashMap<>();
-
-        // insert (0, -1) pair into the map to handle the case when
-        // subarray with zero-sum starts from index 0
-        insert(hashMap, 0, -1);
-
-        int sum = 0;
-
-        // traverse the given array
-        for (int i = 0; i < nums.length; i++)
-        {
-            // sum of elements so far
-            sum += nums[i];
-
-            // if the sum is seen before, there exists at least one
-            // subarray with zero-sum
-            if (hashMap.containsKey(sum))
-            {
-                List<Integer> list = hashMap.get(sum);
-
-                // find all subarrays with the same sum
-                for (Integer value: list)
-                {
-                    System.out.println("Subarray [" + (value + 1) + "…" +
-                            i + "]");
-                }
-            }
-
-            // insert (sum so far, current index) pair into the multimap
-            insert(hashMap, sum, i);
-        }
-    }
-
-    public int findMaxLenSubarray(List<Integer> nums, int target)
-    {
-        // Write your code here...
-
-        int sum = -1;
-        int maxLengthSubArray = -1;
-
-        for (int i = 0; i < nums.size(); i++)
-        {
-            sum = 0;
-
-            for (int j = i; j < nums.size(); j++)
-            {
-                sum += nums.get(j);
-
-                if (sum > target)
-                    break;
-
-                if (sum == target)
-                {
-                    int length = j - i + 1;
-                    maxLengthSubArray = Math.max(length, maxLengthSubArray);
-
-
-                }
-            }
-
-        }
-        return maxLengthSubArray;
-
-    }
 
 
 

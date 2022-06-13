@@ -113,7 +113,7 @@ public class GenerateParenthesis {
             backtrack(openN, closedN + 1, n);
             st.pop();
         }
-
-
     }
+
+
 }

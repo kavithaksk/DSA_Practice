@@ -11,7 +11,6 @@ public class InterviewQuestions {
     int numCols = 0;
 
 
-
     public void findLastStoneWeight(Integer[] stones) {
         int count = stones.length;
 

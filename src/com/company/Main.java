@@ -34,7 +34,17 @@ public class Main {
         List<Integer> result2 = DifferentWaysToAddParanthesis.diffWaysToCompute(expression);
         result2.stream().forEach(i -> System.out.println(i));
 
-        SearchInsert.searchInsert(new int[] {1, 3},2);
+        //SearchInsert.searchInsert(new int[] {1, 3},2);
+
+        //RemoveDuplicatesInAnArray.removeDuplicates();
+       // MaximumSubArray.maxSubArray();
+        //System.out.println(RemoveKDigits.removeKdigits("10001", 4));
+
+       // LongestStringChain.longestStrChain();
+
+        AdsConversionRate.getAdsConversionRate();
+
+
 
         int[][] grid = new int[][]{
             { 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},{0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0},

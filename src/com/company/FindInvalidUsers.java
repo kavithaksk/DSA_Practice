@@ -21,7 +21,9 @@ public class FindInvalidUsers {
 
     public static void findInvalidUsers()
     {
-        /* create a map to store the entry and exit values. When there is entry, set it to 1 and when there is exit, then set it to 0 */
+        /* create a map to store the entry and exit values.
+           When there is entry, set it to 1.
+           when there is exit, then set it to 0 */
         HashMap<String, Integer> map = new HashMap<>();
         HashSet<String> noEntryMap = new HashSet<>();
         HashSet<String> noExitMap = new HashSet<>();
@@ -38,17 +40,15 @@ public class FindInvalidUsers {
                     map.put(s[0], 0);
                 }
             }
-
-            else if (s[1].equals("enter")) {
+            else
+            {
                 int count = map.getOrDefault(s[0], 0);
                 if (count != 1)
                     map.put(s[0], 1);
                 else
                     noExitMap.add(s[0]);
             }
-
-
-        }
+       }
 
         for (Map.Entry<String, Integer> kv : map.entrySet())
         {
@@ -64,9 +64,7 @@ public class FindInvalidUsers {
 
         invalidEntries.add(invalidExitValues);
         invalidEntries.add(invalidEntryValues);
-
         invalidEntries.stream().forEach(s-> System.out.println(s));
-
     }
 
 

@@ -46,6 +46,8 @@ public class Main {
 
         FindInvalidUsers.findInvalidUsers();
 
+        StudentCourseShare.printCommonCoursesSharedByStudents();
+
 
 //
 //        int[][] grid = new int[][]{

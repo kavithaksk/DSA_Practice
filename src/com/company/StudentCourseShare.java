@@ -2,7 +2,6 @@ package com.company;
 import java.util.*;
 
 public class StudentCourseShare {
-
     public static String[][] studentCoursePairs1 = new String[][]
             {
                     {"58", "Linear Algebra"},
@@ -19,7 +18,7 @@ public class StudentCourseShare {
             };
 
     public static void printCommonCoursesSharedByStudents() {
-        HashMap<Integer, List<String>> studentCoursesMap = new HashMap<Integer, List<String>>();
+        HashMap<Integer, List<String>> studentCoursesMap = new HashMap<>();
         for (int i = 0; i < studentCoursePairs1.length; i++) {
             String[] studentCoursePair = studentCoursePairs1[i];
             Integer studentId = Integer.parseInt(studentCoursePair[0]);
@@ -88,9 +87,7 @@ public class StudentCourseShare {
             if (currentCourses.contains(s))
                 commonList.add(s);
         }
-
         return  commonList;
-
     }
 
 }
